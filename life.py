@@ -1,8 +1,8 @@
 import numpy as np
 import cv2
 
-cols = 10
-rows = 10
+cols = 50
+rows = 50
 grid = np.array([])
 
 def make2DArray(cols, rows):
@@ -11,12 +11,12 @@ def make2DArray(cols, rows):
     return array
 
 def draw(cols, rows, grid):
-    MAX_WIDTH = 1000
-    MAX_HEIGHT = 1000
+    MAX_WIDTH = 600
+    MAX_HEIGHT = 600
     INTERVAL = 5
     MARGIN = 5
-    WIDTH_EACH = min(40, MAX_WIDTH - MARGIN * 2 + INTERVAL / cols)
-    HEIGHT_EACH = min(40, MAX_HEIGHT - MARGIN * 2 + INTERVAL / cols)
+    WIDTH_EACH = min(40, (MAX_WIDTH - MARGIN * 2 + INTERVAL) / cols - INTERVAL)
+    HEIGHT_EACH = min(40, (MAX_HEIGHT - MARGIN * 2 + INTERVAL) / rows - INTERVAL)
     width = cols * (WIDTH_EACH + INTERVAL) - INTERVAL + MARGIN * 2
     height = rows * (HEIGHT_EACH + INTERVAL) - INTERVAL + MARGIN * 2
     img = np.zeros((height, width), dtype = 'uint8')
