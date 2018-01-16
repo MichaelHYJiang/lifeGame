@@ -64,10 +64,21 @@ if __name__ == '__main__':
     cv2.imshow('grid', draw(cols, rows, grid))
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+    old = grid
+    cycle = 0
+    MAX_CYCLE = 10
     while key != 32:
+        older = old
+        old = grid
         grid = computeNext(cols, rows, grid)
         cv2.imshow('grid', draw(cols, rows, grid))
         key = cv2.waitKey(50)
-        if key == 27: # press esc to reset
+        diff = abs(older - grid).sum()
+        thresh = 0
+        if diff <= thresh:
+            cycle += 1
+        else:
+            cycle = 0
+        if key == 27 or cycle > MAX_CYCLE: # pressing esc or reaching maximum cycle times, it'll reset
             grid = make2DArray(cols, rows)
     cv2.destroyAllWindows()
