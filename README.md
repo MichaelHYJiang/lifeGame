@@ -1,1 +1,1 @@
-bdcac9c06388a848fb735bf85b1ef76c69bf3e92
+This implements Conway's Game of Life in Python.
