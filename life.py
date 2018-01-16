@@ -1,8 +1,9 @@
 import numpy as np
 import cv2
+import time
 
-cols = 50
-rows = 50
+cols = 80
+rows = 80
 grid = np.array([])
 
 def make2DArray(cols, rows):
@@ -81,4 +82,11 @@ if __name__ == '__main__':
             cycle = 0
         if key == 27 or cycle > MAX_CYCLE: # pressing esc or reaching maximum cycle times, it'll reset
             grid = make2DArray(cols, rows)
+            t = time.localtime()
+            print 'reset at %s.%s.%s %s:%s:%s' % (str(t.tm_year).zfill(4), \
+                                                  str(t.tm_mon).zfill(2), \
+                                                  str(t.tm_mday).zfill(2), \
+                                                  str(t.tm_hour).zfill(2), \
+                                                  str(t.tm_min).zfill(2), \
+                                                  str(t.tm_sec).zfill(2))
     cv2.destroyAllWindows()
