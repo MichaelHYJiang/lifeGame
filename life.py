@@ -68,6 +68,7 @@ if __name__ == '__main__':
     old = grid
     cycle = 0
     MAX_CYCLE = 10
+    t0 = time.time()
     while key != 32:
         older = old
         old = grid
@@ -88,5 +89,7 @@ if __name__ == '__main__':
                                                   str(t.tm_mday).zfill(2), \
                                                   str(t.tm_hour).zfill(2), \
                                                   str(t.tm_min).zfill(2), \
-                                                  str(t.tm_sec).zfill(2))
+                                                  str(t.tm_sec).zfill(2)),
+            print 'exist %.2f s' % (time.time() - t0)
+            t0 = time.time()
     cv2.destroyAllWindows()
