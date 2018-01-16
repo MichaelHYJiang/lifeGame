@@ -32,6 +32,22 @@ def draw(cols, rows, grid):
                               -1)
     return img
     
+def countNeighbor(grid, x, y, cols, rows):
+    sum = 0
+    for i in range(x - 1, x + 2):
+        for j in range(y - 1, y + 2):
+            if (i, j) == (x, y) or i < 0 or j < 0 or i >= rows or j >= cols:
+                continue
+            sum += grid[i, j]
+    return sum
+    
+def computeNext(cols, rows, grid):
+    next = make2DArray(cols, rows)
+    for i in range(rows):
+        for j in range(cols):
+            # count live neighbors
+            neighbors = countNeighbor(grid, i, j, cols, rows)
+            
 if __name__ == '__main__':
     grid = make2DArray(cols, rows)
     cv2.imshow('grid', draw(cols, rows, grid))
