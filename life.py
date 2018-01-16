@@ -1,8 +1,8 @@
 import numpy as np
 import cv2
 
-cols = 10
-rows = 10
+cols = 20
+rows = 20
 grid = np.array([])
 
 def make2DArray(cols, rows):
@@ -36,8 +36,10 @@ def countNeighbor(grid, x, y, cols, rows):
     sum = 0
     for i in range(x - 1, x + 2):
         for j in range(y - 1, y + 2):
-            if (i, j) == (x, y) or i < 0 or j < 0 or i >= rows or j >= cols:
+            if (i, j) == (x, y):
                 continue
+            i %= rows
+            j %= cols
             sum += grid[i, j]
     return sum
     
@@ -47,13 +49,19 @@ def computeNext(cols, rows, grid):
         for j in range(cols):
             # count live neighbors
             neighbors = countNeighbor(grid, i, j, cols, rows)
-            state = grid[i][j]
+            #print neighbors,
+            state = grid[i, j]
             if state == 0 and neighbors == 3:
                 next[i][j] = 1
+                #print '1',
             elif state == 1 and (neighbors < 2 or neighbors > 3):
                 next[i][j] = 0
+                #print '2',
             else:
-                next[i][j] == state
+                next[i][j] = state
+                #print '3',
+        #print '.'
+    #print '=' * 20
     return next
     
 if __name__ == '__main__':
@@ -63,7 +71,9 @@ if __name__ == '__main__':
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     while key != 32:
+        old = grid
         grid = computeNext(cols, rows, grid)
+        cv2.imshow('old', draw(cols, rows, old))
         cv2.imshow('grid', draw(cols, rows, grid))
-        key = cv2.waitKey(100)
+        key = cv2.waitKey(50)
     cv2.destroyAllWindows()
