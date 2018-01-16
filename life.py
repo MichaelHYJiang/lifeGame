@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import time
+import sys
 
 cols = 80
 rows = 80
@@ -68,7 +69,7 @@ if __name__ == '__main__':
     old = grid
     cycle = 0
     MAX_CYCLE = 10
-    t0 = time.time()
+    gen = 0.0
     while key != 32:
         older = old
         old = grid
@@ -81,8 +82,10 @@ if __name__ == '__main__':
             cycle += 1
         else:
             cycle = 0
+        gen += 1
         if key == 27 or cycle > MAX_CYCLE: # pressing esc or reaching maximum cycle times, it'll reset
             grid = make2DArray(cols, rows)
+            old = grid
             t = time.localtime()
             print 'reset at %s.%s.%s %s:%s:%s' % (str(t.tm_year).zfill(4), \
                                                   str(t.tm_mon).zfill(2), \
@@ -90,6 +93,6 @@ if __name__ == '__main__':
                                                   str(t.tm_hour).zfill(2), \
                                                   str(t.tm_min).zfill(2), \
                                                   str(t.tm_sec).zfill(2)),
-            print 'exist %.2f s' % (time.time() - t0)
-            t0 = time.time()
+            print 'exist %d generations' % int(gen)
+            gen = 0
     cv2.destroyAllWindows()
