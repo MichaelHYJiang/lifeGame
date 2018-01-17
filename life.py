@@ -11,6 +11,21 @@ def make2DArray(cols, rows):
     array = np.random.rand(rows, cols)
     array = np.array(array * 2, dtype = 'uint8')
     return array
+    
+def gliderGun(cols, rows, startX = 0, startY = 0):
+    array = np.zeros((rows, cols), dtype = 'uint8')
+    array[startX + 1 : startX + 3, startY + 5 : startY + 7] = 1
+    array[startX + 11, startY + 5 : startY + 8] = 1
+    array[startX + 12, (startY + 4, startY + 8)] = 1
+    array[startX + 13 : startX + 15, (startY + 3, startY + 9)] = 1
+    array[startX + 15, startY + 6] = 1
+    array[startX + 16, (startY + 4, startY + 8)] = 1
+    array[startX + 17, startY + 5 : startY + 8] = 1
+    array[startX + 21: startX + 23, startY +3 : startY + 6] = 1
+    array[startX + 23, (startY + 2, startY + 6)] = 1
+    array[startX + 25, (startY + 1, startY + 2, startY + 6, startY + 7)] = 1
+    array[startX + 35 : startX + 37, startY + 3 : startY + 5] = 1
+    return array
 
 def draw(cols, rows, grid):
     MAX_WIDTH = 600
@@ -62,7 +77,8 @@ def computeNext(cols, rows, grid):
     
 if __name__ == '__main__':
     key = 0
-    grid = make2DArray(cols, rows)
+    #grid = make2DArray(cols, rows)
+    grid = gliderGun(cols, rows)
     cv2.imshow('grid', draw(cols, rows, grid))
     cv2.waitKey(0)
     cv2.destroyAllWindows()
