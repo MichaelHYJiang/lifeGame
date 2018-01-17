@@ -79,7 +79,7 @@ def computeNext(cols, rows, grid):
 if __name__ == '__main__':
     key = 0
     #grid = make2DArray(cols, rows)
-    grid = gliderGun(cols, rows)
+    grid = gliderGun(cols, rows, int(np.random.rand() * (rows - 36)), int(np.random.rand() * (cols - 10)))
     cv2.imshow('grid', draw(cols, rows, grid))
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -92,7 +92,7 @@ if __name__ == '__main__':
         old = grid
         grid = computeNext(cols, rows, grid)
         cv2.imshow('grid', draw(cols, rows, grid))
-        key = cv2.waitKey(50)
+        key = cv2.waitKey(10)
         diff = abs(older - grid).sum()
         thresh = 0
         if diff <= thresh:
