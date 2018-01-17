@@ -14,17 +14,18 @@ def make2DArray(cols, rows):
     
 def gliderGun(cols, rows, startX = 0, startY = 0):
     array = np.zeros((rows, cols), dtype = 'uint8')
-    array[startX + 1 : startX + 3, startY + 5 : startY + 7] = 1
-    array[startX + 11, startY + 5 : startY + 8] = 1
-    array[startX + 12, (startY + 4, startY + 8)] = 1
-    array[startX + 13 : startX + 15, (startY + 3, startY + 9)] = 1
-    array[startX + 15, startY + 6] = 1
-    array[startX + 16, (startY + 4, startY + 8)] = 1
-    array[startX + 17, startY + 5 : startY + 8] = 1
-    array[startX + 21: startX + 23, startY +3 : startY + 6] = 1
-    array[startX + 23, (startY + 2, startY + 6)] = 1
-    array[startX + 25, (startY + 1, startY + 2, startY + 6, startY + 7)] = 1
-    array[startX + 35 : startX + 37, startY + 3 : startY + 5] = 1
+    array[startY + 5 : startY + 7, startX + 1 : startX + 3] = 1
+    array[startY + 5 : startY + 8, startX + 11] = 1
+    array[(startY + 4, startY + 8), startX + 12] = 1
+    array[(startY + 3, startY + 9), startX + 13 : startX + 15] = 1
+    array[startY + 6, startX + 15] = 1
+    array[(startY + 4, startY + 8), startX + 16] = 1
+    array[startY + 5 : startY + 8, startX + 17] = 1
+    array[startY + 6, startX + 18] = 1
+    array[startY +3 : startY + 6, startX + 21: startX + 23] = 1
+    array[(startY + 2, startY + 6), startX + 23] = 1
+    array[(startY + 1, startY + 2, startY + 6, startY + 7), startX + 25] = 1
+    array[startY + 3 : startY + 5, startX + 35 : startX + 37] = 1
     return array
 
 def draw(cols, rows, grid):
